@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grove — Considered goods for everyday living</title>
+<meta name="description" content="Grove is a considered-goods storefront: kitchen, textiles, lighting and outdoor pieces made to last.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="css/variables.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="container site-header__inner">
+    <button class="nav-toggle" data-nav-toggle aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+      <span></span><span></span><span></span>
+    </button>
+    <a href="index.html" class="brand"><span class="brand__mark">◆</span> Grove</a>
+    <nav class="nav-primary" aria-label="Primary">
+      <a href="index.html" aria-current="page">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="shop.html?category=kitchen">Kitchen</a>
+      <a href="shop.html?category=lighting">Lighting</a>
+      <a href="shop.html?category=outdoor">Outdoor</a>
+    </nav>
+    <div class="header-actions">
+      <div class="theme-switch" role="group" aria-label="Choose a theme">
+        <button data-swatch="light" aria-label="Light theme"></button>
+        <button data-swatch="dark" aria-label="Dark theme"></button>
+        <button data-swatch="neo" aria-label="Neo theme"></button>
+      </div>
+      <a class="icon-btn" href="wishlist.html" aria-label="Wishlist">
+        <svg viewBox="0 0 24 24" stroke-width="1.6"><path d="M12 21s-7.5-4.9-10-9.3C.3 8 2 4 6 4c2.2 0 3.7 1.3 6 4 2.3-2.7 3.8-4 6-4 4 0 5.7 4 4 7.7-2.5 4.4-10 9.3-10 9.3z"/></svg>
+        <span class="badge-count" data-wishlist-count>0</span>
+      </a>
+      <button class="icon-btn" data-cart-open aria-label="Open cart">
+        <svg viewBox="0 0 24 24" stroke-width="1.6"><path d="M6 7h12l-1 13H7L6 7z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg>
+        <span class="badge-count" data-cart-count>0</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="container section--tight">
+    <div class="hero">
+      <div class="hero-slide is-active">
+        <div class="hero-slide__copy">
+          <p class="eyebrow">New arrivals</p>
+          <h1>Objects worth keeping.</h1>
+          <p>Small-batch kitchenware, linen and light — chosen for how they wear in, not just how they look on day one.</p>
+          <a class="btn btn--primary" href="shop.html">Shop the collection</a>
+        </div>
+        <div class="hero-slide__media">
+          <img src="https://picsum.photos/seed/grove-hero-1/1000/1000" alt="A hand-glazed ceramic pour-over set on a linen tablecloth" width="1000" height="1000">
+          <span class="hero-slide__price">Kanso Pour-Over Set — $68</span>
+        </div>
+      </div>
+      <div class="hero-slide">
+        <div class="hero-slide__copy">
+          <p class="eyebrow">This week only</p>
+          <h1>Linen, stone-washed soft.</h1>
+          <p>European flax, garment-dyed and pre-washed so the first night already feels broken-in.</p>
+          <a class="btn btn--primary" href="shop.html?category=textiles">Shop textiles</a>
+        </div>
+        <div class="hero-slide__media">
+          <img src="https://picsum.photos/seed/grove-hero-2/1000/1000" alt="Stone-washed linen bedding folded on a bed" width="1000" height="1000">
+          <span class="hero-slide__price">Linden Bedding Bundle — $149</span>
+        </div>
+      </div>
+      <div class="hero-slide">
+        <div class="hero-slide__copy">
+          <p class="eyebrow">Made to last outdoors</p>
+          <h1>Take the evening outside.</h1>
+          <p>Weatherproof lounge pieces and lighting built for long seasons, not just one summer.</p>
+          <a class="btn btn--primary" href="shop.html?category=outdoor">Shop outdoor</a>
+        </div>
+        <div class="hero-slide__media">
+          <img src="https://picsum.photos/seed/grove-hero-3/1000/1000" alt="A teak side table and lounge chair on a patio at dusk" width="1000" height="1000">
+          <span class="hero-slide__price">Quarry Lounge Chair — $340</span>
+        </div>
+      </div>
+      <button class="hero-arrow hero-arrow--prev" data-hero-prev aria-label="Previous slide">‹</button>
+      <button class="hero-arrow hero-arrow--next" data-hero-next aria-label="Next slide">›</button>
+      <div class="hero-dots" data-hero-dots></div>
+    </div>
+  </section>
+
+  <section class="container section" aria-labelledby="cat-heading">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">Shop by room</p>
+        <h2 id="cat-heading">Find your corner</h2>
+      </div>
+    </div>
+    <div class="category-grid" data-category-grid>
+      <a class="category-card" href="shop.html?category=kitchen">
+        <img src="https://picsum.photos/seed/grove-kitchen/600/750" alt="" loading="lazy" width="600" height="750">
+        <span class="category-card__label"><span>12 pieces</span><h3>Kitchen &amp; Table</h3></span>
+      </a>
+      <a class="category-card" href="shop.html?category=textiles">
+        <img src="https://picsum.photos/seed/grove-textiles/600/750" alt="" loading="lazy" width="600" height="750">
+        <span class="category-card__label"><span>12 pieces</span><h3>Textiles</h3></span>
+      </a>
+      <a class="category-card" href="shop.html?category=lighting">
+        <img src="https://picsum.photos/seed/grove-lighting/600/750" alt="" loading="lazy" width="600" height="750">
+        <span class="category-card__label"><span>12 pieces</span><h3>Lighting</h3></span>
+      </a>
+      <a class="category-card" href="shop.html?category=outdoor">
+        <img src="https://picsum.photos/seed/grove-outdoor/600/750" alt="" loading="lazy" width="600" height="750">
+        <span class="category-card__label"><span>12 pieces</span><h3>Garden &amp; Outdoor</h3></span>
+      </a>
+    </div>
+  </section>
+
+  <section class="container section" aria-labelledby="top-heading">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">Customer favorites</p>
+        <h2 id="top-heading">Top selling</h2>
+        <p>Rated highest by people who bought them twice.</p>
+      </div>
+      <a class="btn btn--outline" href="shop.html">View all products</a>
+    </div>
+    <div class="product-grid" data-top-selling></div>
+  </section>
+
+  <section class="container section--tight">
+    <div class="newsletter">
+      <div>
+        <h2>Get first look at new arrivals</h2>
+        <p>One email a month. No noise, just the pieces worth knowing about first.</p>
+      </div>
+      <form class="newsletter-form" data-newsletter-form>
+        <label class="visually-hidden" for="newsletter-email">Email address</label>
+        <input id="newsletter-email" type="email" required placeholder="you@email.com">
+        <button class="btn btn--outline" type="submit">Sign up</button>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a href="index.html" class="brand"><span class="brand__mark">◆</span> Grove</a>
+        <p style="margin-top:var(--space-3);max-width:32ch">Considered goods for kitchen, home and garden — designed to be used, not just displayed.</p>
+      </div>
+      <div>
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="shop.html?category=kitchen">Kitchen</a></li>
+          <li><a href="shop.html?category=textiles">Textiles</a></li>
+          <li><a href="shop.html?category=lighting">Lighting</a></li>
+          <li><a href="shop.html?category=outdoor">Outdoor</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Support</h4>
+        <ul>
+          <li><a href="#">Shipping &amp; returns</a></li>
+          <li><a href="#">Track an order</a></li>
+          <li><a href="#">Contact us</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Stay in touch</h4>
+        <ul>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">Pinterest</a></li>
+          <li><a href="wishlist.html">Your wishlist</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Grove. Template for demonstration purposes.</span>
+      <span>Built with vanilla HTML, CSS &amp; JS</span>
+    </div>
+  </div>
+</footer>
+
+<!-- Mobile nav drawer -->
+<div class="drawer-overlay" data-mobile-nav-overlay></div>
+<nav class="mobile-nav" id="mobile-nav" data-mobile-nav aria-label="Mobile">
+  <div style="display:flex;justify-content:space-between;align-items:center">
+    <span class="brand"><span class="brand__mark">◆</span> Grove</span>
+    <button class="icon-btn" data-mobile-nav-close aria-label="Close menu">✕</button>
+  </div>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="shop.html">Shop</a></li>
+    <li><a href="shop.html?category=kitchen">Kitchen</a></li>
+    <li><a href="shop.html?category=textiles">Textiles</a></li>
+    <li><a href="shop.html?category=lighting">Lighting</a></li>
+    <li><a href="shop.html?category=outdoor">Outdoor</a></li>
+    <li><a href="wishlist.html">Wishlist</a></li>
+  </ul>
+</nav>
+
+<!-- Cart drawer -->
+<div class="drawer-overlay" data-cart-overlay></div>
+<aside class="drawer" data-cart-drawer aria-label="Shopping cart">
+  <div class="drawer__header">
+    <h3>Your cart</h3>
+    <button class="icon-btn" data-cart-close aria-label="Close cart">✕</button>
+  </div>
+  <div class="drawer__body" data-cart-body></div>
+  <div class="drawer__footer" data-cart-footer></div>
+</aside>
+
+<script type="module" src="js/mockData.js"></script>
+<script type="module" src="js/cart.js"></script>
+<script type="module" src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checkout — Grove</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="css/variables.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a href="index.html" class="brand"><span class="brand__mark">◆</span> Grove</a>
+    <nav class="nav-primary" aria-label="Primary"><a href="shop.html">Continue shopping</a></nav>
+    <div class="header-actions">
+      <div class="theme-switch" role="group" aria-label="Choose a theme">
+        <button data-swatch="light" aria-label="Light theme"></button>
+        <button data-swatch="dark" aria-label="Dark theme"></button>
+        <button data-swatch="neo" aria-label="Neo theme"></button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="main" class="container section--tight">
+  <div class="checkout-steps" data-checkout-steps></div>
+
+  <div data-checkout-empty style="display:none" class="empty-state">
+    <h3>Your cart is empty</h3>
+    <p>Add something to your cart before checking out.</p>
+    <a class="btn btn--primary" href="shop.html">Browse the shop</a>
+  </div>
+
+  <div class="checkout-grid">
+    <div>
+      <!-- Step 1: Shipping -->
+      <div data-panel="shipping">
+        <h2 style="font-size:var(--fs-lg)">Shipping details</h2>
+        <form id="shipping-form">
+          <div class="form-row">
+            <div class="field"><label for="first-name">First name</label><input id="first-name" required></div>
+            <div class="field"><label for="last-name">Last name</label><input id="last-name" required></div>
+          </div>
+          <div class="field"><label for="address">Address</label><input id="address" required></div>
+          <div class="form-row">
+            <div class="field"><label for="city">City</label><input id="city" required></div>
+            <div class="field"><label for="zip">ZIP / Postal code</label><input id="zip" required></div>
+          </div>
+          <div class="field"><label for="email">Email</label><input id="email" type="email" required></div>
+          <button class="btn btn--primary" data-checkout-next type="submit">Continue to payment</button>
+        </form>
+      </div>
+
+      <!-- Step 2: Payment -->
+      <div data-panel="payment" style="display:none">
+        <h2 style="font-size:var(--fs-lg)">Payment</h2>
+        <div class="pay-methods">
+          <div class="pay-method is-selected">Card</div>
+          <div class="pay-method">PayPal</div>
+          <div class="pay-method">Apple Pay</div>
+        </div>
+        <form id="payment-form">
+          <div class="field"><label for="card-name">Name on card</label><input id="card-name" required></div>
+          <div class="field"><label for="card-number">Card number</label><input id="card-number" inputmode="numeric" placeholder="4242 4242 4242 4242" required></div>
+          <div class="form-row">
+            <div class="field"><label for="card-exp">Expiry</label><input id="card-exp" placeholder="MM/YY" required></div>
+            <div class="field"><label for="card-cvc">CVC</label><input id="card-cvc" inputmode="numeric" required></div>
+          </div>
+          <div style="display:flex;gap:var(--space-3)">
+            <button class="btn btn--outline" type="button" data-checkout-back>Back</button>
+            <button class="btn btn--primary" style="flex:1" data-checkout-next type="submit">Review &amp; place order</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Step 3: Confirmation -->
+      <div data-panel="confirmation" style="display:none">
+        <div class="confirm-panel">
+          <div class="check-circle">✓</div>
+          <h2>Order confirmed</h2>
+          <p>Thank you — your order <strong data-order-number></strong> is on its way. A confirmation has been mock-sent to your email.</p>
+          <a class="btn btn--primary" href="index.html">Back to home</a>
+        </div>
+      </div>
+    </div>
+
+    <aside class="order-review">
+      <h3 style="font-size:var(--fs-base)">Order summary</h3>
+      <div data-order-review></div>
+    </aside>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-bottom">
+      <span>© 2026 Grove. Template for demonstration purposes.</span>
+      <span>This checkout is a visual mock — no real payment is processed.</span>
+    </div>
+  </div>
+</footer>
+
+<script type="module" src="js/mockData.js"></script>
+<script type="module" src="js/cart.js"></script>
+<script type="module" src="js/main.js"></script>
+<script type="module" src="js/checkout.js"></script>
+</body>
+</html>

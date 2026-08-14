@@ -1,0 +1,146 @@
+/* =========================================================
+   GROVE — Design Tokens
+   A considered-goods storefront template.
+   Three switchable presets: light (default), dark, neo.
+   Change the whole site's palette by swapping [data-theme].
+   ========================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+:root {
+  /* ---- Typography ---- */
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  --fs-xs: 0.75rem;
+  --fs-sm: 0.8125rem;
+  --fs-base: 0.9375rem;
+  --fs-md: 1.0625rem;
+  --fs-lg: 1.375rem;
+  --fs-xl: 1.875rem;
+  --fs-2xl: 2.5rem;
+  --fs-3xl: clamp(2.5rem, 5vw, 4.25rem);
+
+  --lh-tight: 1.1;
+  --lh-normal: 1.5;
+
+  /* ---- Spacing scale ---- */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4.5rem;
+  --space-9: 7rem;
+
+  /* ---- Layout ---- */
+  --container-max: 1280px;
+  --radius-sm: 3px;
+  --radius-md: 8px;
+  --radius-lg: 18px;
+  --radius-tag: 3px 10px 10px 3px;
+
+  /* ---- Motion ---- */
+  --ease: cubic-bezier(.4, 0, .2, 1);
+  --transition-fast: 150ms var(--ease);
+  --transition: 260ms var(--ease);
+  --transition-slow: 420ms var(--ease);
+
+  /* ---- Elevation ---- */
+  --shadow-sm: 0 1px 2px rgba(20, 20, 15, 0.06);
+  --shadow-md: 0 8px 24px -8px rgba(20, 20, 15, 0.18);
+  --shadow-lg: 0 24px 60px -12px rgba(20, 20, 15, 0.28);
+
+  --header-h: 76px;
+}
+
+/* =========================================================
+   THEME: light  — "Grove Minimalist Light" (default)
+   Linen ground, deep forest ink, brass hang-tag accent.
+   ========================================================= */
+:root,
+[data-theme="light"] {
+  --color-bg: #EDEBE2;
+  --color-bg-alt: #E4E1D5;
+  --color-surface: #FFFFFF;
+  --color-surface-2: #F7F6F0;
+  --color-ink: #191C15;
+  --color-ink-soft: #3E4136;
+  --color-muted: #726F63;
+  --color-line: #D9D5C6;
+  --color-line-strong: #C3BEAA;
+
+  --color-accent: #2F5233;
+  --color-accent-strong: #203A24;
+  --color-accent-ink: #F6F4EC;
+  --color-brass: #A8813F;
+  --color-brass-soft: #E7D8B5;
+
+  --color-danger: #A5402A;
+  --color-success: #2F5233;
+  --color-focus: #A8813F;
+
+  --overlay: rgba(15, 16, 12, 0.5);
+  color-scheme: light;
+}
+
+/* =========================================================
+   THEME: dark — "Sleek Dark"
+   Charcoal-green ground, warm bone ink, brass accent lifted.
+   ========================================================= */
+[data-theme="dark"] {
+  --color-bg: #12140F;
+  --color-bg-alt: #191C15;
+  --color-surface: #1B1F17;
+  --color-surface-2: #21251C;
+  --color-ink: #F1EFE4;
+  --color-ink-soft: #D6D3C4;
+  --color-muted: #8E9182;
+  --color-line: #2C3024;
+  --color-line-strong: #3A3F2F;
+
+  --color-accent: #7FB88A;
+  --color-accent-strong: #A3D2AB;
+  --color-accent-ink: #0E140F;
+  --color-brass: #D9B872;
+  --color-brass-soft: #3A331F;
+
+  --color-danger: #E28068;
+  --color-success: #7FB88A;
+  --color-focus: #D9B872;
+
+  --overlay: rgba(0, 0, 0, 0.65);
+  color-scheme: dark;
+}
+
+/* =========================================================
+   THEME: neo — "Vibrant Neo"
+   Near-black ground, violet + mint dual accent.
+   ========================================================= */
+[data-theme="neo"] {
+  --color-bg: #0E0E14;
+  --color-bg-alt: #15151E;
+  --color-surface: #17171F;
+  --color-surface-2: #1D1D28;
+  --color-ink: #F3F2FA;
+  --color-ink-soft: #C9C7DA;
+  --color-muted: #8A88A0;
+  --color-line: #2A2A38;
+  --color-line-strong: #3A3A4C;
+
+  --color-accent: #8B6CFF;
+  --color-accent-strong: #A98FFF;
+  --color-accent-ink: #0E0E14;
+  --color-brass: #00E3A0;
+  --color-brass-soft: #16332A;
+
+  --color-danger: #FF6B7A;
+  --color-success: #00E3A0;
+  --color-focus: #00E3A0;
+
+  --overlay: rgba(5, 5, 10, 0.7);
+  color-scheme: dark;
+}
