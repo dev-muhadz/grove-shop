@@ -49,8 +49,12 @@ function renderOrderReview() {
 function initPayMethods() {
   document.querySelectorAll(".pay-method").forEach((el) => {
     el.addEventListener("click", () => {
-      document.querySelectorAll(".pay-method").forEach((x) => x.classList.remove("is-selected"));
+      document.querySelectorAll(".pay-method").forEach((x) => {
+        x.classList.remove("is-selected");
+        x.setAttribute("aria-pressed", "false");
+      });
       el.classList.add("is-selected");
+      el.setAttribute("aria-pressed", "true");
     });
   });
 }
