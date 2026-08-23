@@ -6,3 +6,33 @@
     position: static;
   }
 }
+
+/* Keep the shop content inside the mobile viewport. Grid/flex children can otherwise
+   establish a wider intrinsic width than the available container. */
+@media (max-width: 760px) {
+  .shop-layout,
+  .shop-layout > div,
+  .product-grid,
+  .product-card,
+  .toolbar,
+  .search-input {
+    min-width: 0;
+  }
+
+  .search-input {
+    width: 100%;
+  }
+
+  .toolbar > * {
+    max-width: 100%;
+  }
+
+  .select-sort {
+    max-width: 100%;
+  }
+
+  .product-card__title,
+  .product-card__cat {
+    overflow-wrap: anywhere;
+  }
+}
