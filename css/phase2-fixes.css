@@ -1,0 +1,8 @@
+/* GROVE — Phase 2 responsive fixes */
+
+/* The desktop filter rail is sticky, but mobile should scroll naturally with the page. */
+@media (max-width: 900px) {
+  .filters {
+    position: static;
+  }
+}
