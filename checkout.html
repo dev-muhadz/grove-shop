@@ -4,6 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Checkout — Grove</title>
+<meta name="description" content="Complete your Grove demo-store checkout with shipping and payment details in this visual template flow.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://dev-muhadz.github.io/grove-shop/checkout.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Checkout — Grove">
+<meta property="og:description" content="A polished, visual checkout flow for the Grove storefront template.">
+<meta property="og:url" content="https://dev-muhadz.github.io/grove-shop/checkout.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Checkout — Grove">
+<meta name="twitter:description" content="A polished, visual checkout flow for the Grove storefront template.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="css/variables.css">
 <link rel="stylesheet" href="css/style.css">
@@ -37,7 +47,6 @@
 
   <div class="checkout-grid">
     <div>
-      <!-- Step 1: Shipping -->
       <div data-panel="shipping">
         <h2 style="font-size:var(--fs-lg)">Shipping details</h2>
         <form id="shipping-form">
@@ -55,13 +64,12 @@
         </form>
       </div>
 
-      <!-- Step 2: Payment -->
       <div data-panel="payment" style="display:none">
         <h2 style="font-size:var(--fs-lg)">Payment</h2>
-        <div class="pay-methods">
-          <div class="pay-method is-selected">Card</div>
-          <div class="pay-method">PayPal</div>
-          <div class="pay-method">Apple Pay</div>
+        <div class="pay-methods" role="group" aria-label="Payment method">
+          <button class="pay-method is-selected" type="button" aria-pressed="true">Card</button>
+          <button class="pay-method" type="button" aria-pressed="false">PayPal</button>
+          <button class="pay-method" type="button" aria-pressed="false">Apple Pay</button>
         </div>
         <form id="payment-form">
           <div class="field"><label for="card-name">Name on card</label><input id="card-name" required></div>
@@ -77,7 +85,6 @@
         </form>
       </div>
 
-      <!-- Step 3: Confirmation -->
       <div data-panel="confirmation" style="display:none">
         <div class="confirm-panel">
           <div class="check-circle">✓</div>
