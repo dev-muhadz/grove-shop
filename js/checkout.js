@@ -8,6 +8,7 @@ import { getCartLines, getCartTotals, clearCart, money } from "./cart.js";
 
 const steps = ["shipping", "payment", "confirmation"];
 let current = 0;
+let selectedPayment = "Card";
 
 function renderStepper() {
   const wrap = document.querySelector("[data-checkout-steps]");
@@ -46,15 +47,53 @@ function renderOrderReview() {
   `;
 }
 
+function updatePaymentUI() {
+  const cardForm = document.querySelector("#payment-form");
+  if (!cardForm) return;
+
+  const cardFields = cardForm.querySelectorAll(".field");
+  const submit = cardForm.querySelector("[data-checkout-next]");
+  const existingNote = cardForm.querySelector("[data-payment-note]");
+  const isCard = selectedPayment === "Card";
+
+  cardFields.forEach((field) => {
+    field.style.display = isCard ? "" : "none";
+    field.querySelectorAll("input").forEach((input) => {
+      input.required = isCard;
+    });
+  });
+
+  if (submit) {
+    submit.textContent = isCard ? "Review & place order" : `Continue with ${selectedPayment}`;
+  }
+
+  if (!isCard && !existingNote) {
+    const note = document.createElement("p");
+    note.dataset.paymentNote = "";
+    note.style.margin = "0 0 var(--space-4)";
+    note.textContent = selectedPayment === "PayPal"
+      ? "This demo will simulate a secure PayPal handoff. No real payment will be processed."
+      : "This demo will simulate an Apple Pay handoff. No real payment will be processed.";
+    cardForm.insertBefore(note, cardForm.firstElementChild);
+  } else if (isCard && existingNote) {
+    existingNote.remove();
+  } else if (!isCard && existingNote) {
+    existingNote.textContent = selectedPayment === "PayPal"
+      ? "This demo will simulate a secure PayPal handoff. No real payment will be processed."
+      : "This demo will simulate an Apple Pay handoff. No real payment will be processed.";
+  }
+}
+
 function initPayMethods() {
   document.querySelectorAll(".pay-method").forEach((el) => {
     el.addEventListener("click", () => {
+      selectedPayment = el.textContent.trim();
       document.querySelectorAll(".pay-method").forEach((x) => {
-        x.classList.remove("is-selected");
-        x.setAttribute("aria-pressed", "false");
+        const selected = x === el;
+        x.classList.toggle("is-selected", selected);
+        x.setAttribute("aria-pressed", String(selected));
       });
-      el.classList.add("is-selected");
-      el.setAttribute("aria-pressed", "true");
+      updatePaymentUI();
     });
   });
 }
@@ -69,6 +108,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   renderOrderReview();
   initPayMethods();
+  updatePaymentUI();
   showPanel();
 
   document.querySelectorAll("[data-checkout-next]").forEach((btn) => {
