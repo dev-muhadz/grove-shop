@@ -169,25 +169,14 @@ function cartLineHTML(line) {
   </div>`;
 }
 
-function renderCartDrawer() {
-  const body = document.querySelector("[data-cart-body]");
-  const footer = document.querySelector("[data-cart-footer]");
-  const countEls = document.querySelectorAll("[data-cart-count]");
-  const wishCountEls = document.querySelectorAll("[data-wishlist-count]");
+function renderCartContents(body, footer) {
   const lines = getCartLines();
-  const count = getCartCount();
-
-  countEls.forEach((el) => { el.textContent = String(count); el.classList.toggle("is-visible", count > 0); });
-  wishCountEls.forEach((el) => { const n = getWishlistCount(); el.textContent = String(n); el.classList.toggle("is-visible", n > 0); });
-
   if (!body) return;
-
   if (!lines.length) {
     body.innerHTML = `<div class="cart-empty"><h3>Your cart is empty</h3><p>Explore the shop to find something you'll love.</p><a class="btn btn--primary" href="shop.html">Browse the shop</a></div>`;
     if (footer) footer.innerHTML = "";
     return;
   }
-
   body.innerHTML = lines.map(cartLineHTML).join("");
   const totals = getCartTotals();
   if (footer) {
@@ -209,6 +198,24 @@ function renderCartDrawer() {
     `;
   }
 }
+
+function renderCartDrawer() {
+  const drawer = document.querySelector("[data-cart-drawer]");
+  const body = drawer?.querySelector("[data-cart-body]");
+  const footer = drawer?.querySelector("[data-cart-footer]");
+  const countEls = document.querySelectorAll("[data-cart-count]");
+  const wishCountEls = document.querySelectorAll("[data-wishlist-count]");
+  const lines = getCartLines();
+  const count = getCartCount();
+
+  countEls.forEach((el) => { el.textContent = String(count); el.classList.toggle("is-visible", count > 0); });
+  wishCountEls.forEach((el) => { const n = getWishlistCount(); el.textContent = String(n); el.classList.toggle("is-visible", n > 0); });
+
+  renderCartContents(body, footer);
+  renderCartContents(
+    document.querySelector("[data-cart-page-body]"),
+    document.querySelector("[data-cart-page-footer]")
+  );
 
 function initCartDrawer() {
   const drawer = document.querySelector("[data-cart-drawer]");
@@ -249,7 +256,7 @@ function initCartDrawer() {
     else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first?.focus(); }
   });
 
-  document.querySelector("[data-cart-body]")?.addEventListener("click", (e) => {
+  document.querySelectorAll("[data-cart-body], [data-cart-page-body]").forEach((cartBody) => cartBody.addEventListener("click", (e) => {
     const stepBtn = e.target.closest("[data-step]");
     const removeBtn = e.target.closest("[data-remove-line]");
     const lineEl = e.target.closest("[data-line]");
@@ -261,7 +268,7 @@ function initCartDrawer() {
       if (current) updateQty(productId, color, size, current.qty + Number(stepBtn.dataset.step));
     }
     if (removeBtn) removeFromCart(productId, color, size);
-  });
+  }));
 
   document.body.addEventListener("click", (e) => {
     const applyBtn = e.target.closest("[data-promo-apply]");
