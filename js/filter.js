@@ -12,6 +12,7 @@ const state = {
   categories: new Set(),
   maxPrice: bounds.max,
   sort: "featured",
+  availability: "all",
 };
 
 function readCategoryFromURL() {
@@ -27,7 +28,10 @@ function applyFilters() {
       : true;
     const matchesCategory = state.categories.size ? state.categories.has(p.category) : true;
     const matchesPrice = p.price <= state.maxPrice;
-    return matchesQuery && matchesCategory && matchesPrice;
+    const matchesAvailability =
+      state.availability === "all" ||
+      (state.availability === "in-stock" ? p.stock > 0 : p.stock === 0);
+    return matchesQuery && matchesCategory && matchesPrice && matchesAvailability;
   });
 
   switch (state.sort) {
@@ -68,6 +72,9 @@ function sync() {
   });
   const range = document.querySelector("[data-price-range]");
   if (range) range.value = state.maxPrice;
+  document.querySelectorAll("[data-availability]").forEach((cb) => {
+    cb.checked = cb.value === state.availability;
+  });
   const priceLabel = document.querySelector("[data-price-max-label]");
   if (priceLabel) priceLabel.textContent = `$${state.maxPrice}`;
 }
@@ -113,6 +120,15 @@ function initSearch() {
   });
 }
 
+function initAvailability() {
+  document.querySelectorAll("[data-availability]").forEach((cb) => {
+    cb.addEventListener("change", () => {
+      if (cb.checked) state.availability = cb.value;
+      sync();
+    });
+  });
+}
+
 function initSort() {
   const select = document.querySelector("[data-sort-select]");
   if (!select) return;
@@ -134,6 +150,7 @@ function initClearAll() {
     state.maxPrice = bounds.max;
     state.query = "";
     state.sort = "featured";
+    state.availability = "all";
     const input = document.querySelector("[data-search-input]");
     if (input) input.value = "";
     const select = document.querySelector("[data-sort-select]");
@@ -149,6 +166,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initPriceRange();
   initSearch();
   initSort();
+  initAvailability();
   initCollapsibleGroups();
   initClearAll();
   sync();
