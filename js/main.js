@@ -216,6 +216,7 @@ function renderCartDrawer() {
     document.querySelector("[data-cart-page-body]"),
     document.querySelector("[data-cart-page-footer]")
   );
+}
 
 function initCartDrawer() {
   const drawer = document.querySelector("[data-cart-drawer]");
