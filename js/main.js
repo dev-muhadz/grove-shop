@@ -44,13 +44,38 @@ function initMobileNav() {
   const closeBtn = document.querySelector("[data-mobile-nav-close]");
   if (!nav || !overlay || !openBtn) return;
 
-  const open = () => { nav.classList.add("is-open"); overlay.classList.add("is-open"); openBtn.setAttribute("aria-expanded", "true"); };
-  const close = () => { nav.classList.remove("is-open"); overlay.classList.remove("is-open"); openBtn.setAttribute("aria-expanded", "false"); };
+  let previousFocus = null;
+  const getFocusable = () => [...nav.querySelectorAll("a,button,input,select,textarea,[tabindex]:not([tabindex='-1'])")].filter((el) => !el.disabled && el.offsetParent !== null);
+  const open = () => {
+    previousFocus = document.activeElement;
+    nav.classList.add("is-open");
+    overlay.classList.add("is-open");
+    document.body.classList.add("nav-open");
+    openBtn.setAttribute("aria-expanded", "true");
+    closeBtn?.focus();
+  };
+  const close = () => {
+    nav.classList.remove("is-open");
+    overlay.classList.remove("is-open");
+    document.body.classList.remove("nav-open");
+    openBtn.setAttribute("aria-expanded", "false");
+    previousFocus?.focus?.();
+    previousFocus = null;
+  };
 
   openBtn.addEventListener("click", open);
   closeBtn?.addEventListener("click", close);
   overlay.addEventListener("click", close);
-  document.addEventListener("keydown", (e) => { if (e.key === "Escape") close(); });
+  nav.querySelectorAll("a").forEach((link) => link.addEventListener("click", close));
+  document.addEventListener("keydown", (e) => {
+    if (!nav.classList.contains("is-open")) return;
+    if (e.key === "Escape") { e.preventDefault(); close(); return; }
+    if (e.key !== "Tab") return;
+    const focusable = getFocusable();
+    const first = focusable[0], last = focusable[focusable.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last?.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first?.focus(); }
+  });
 }
 
 /* ---------------- Toasts ---------------- */
@@ -192,13 +217,37 @@ function initCartDrawer() {
   const closeBtn = document.querySelector("[data-cart-close]");
   if (!drawer) { renderCartDrawer(); return; }
 
-  const open = () => { drawer.classList.add("is-open"); overlay?.classList.add("is-open"); };
-  const close = () => { drawer.classList.remove("is-open"); overlay?.classList.remove("is-open"); };
+  let previousFocus = null;
+  const getFocusable = () => [...drawer.querySelectorAll("a,button,input,select,textarea,[tabindex]:not([tabindex='-1'])")].filter((el) => !el.disabled && el.offsetParent !== null);
+  const open = () => {
+    previousFocus = document.activeElement;
+    drawer.classList.add("is-open");
+    overlay?.classList.add("is-open");
+    document.body.classList.add("cart-open");
+    drawer.setAttribute("aria-hidden", "false");
+    closeBtn?.focus();
+  };
+  const close = () => {
+    drawer.classList.remove("is-open");
+    overlay?.classList.remove("is-open");
+    document.body.classList.remove("cart-open");
+    drawer.setAttribute("aria-hidden", "true");
+    previousFocus?.focus?.();
+    previousFocus = null;
+  };
 
   openBtns.forEach((btn) => btn.addEventListener("click", (e) => { e.preventDefault(); open(); }));
   closeBtn?.addEventListener("click", close);
   overlay?.addEventListener("click", close);
-  document.addEventListener("keydown", (e) => { if (e.key === "Escape") close(); });
+  document.addEventListener("keydown", (e) => {
+    if (!drawer.classList.contains("is-open")) return;
+    if (e.key === "Escape") { e.preventDefault(); close(); return; }
+    if (e.key !== "Tab") return;
+    const focusable = getFocusable();
+    const first = focusable[0], last = focusable[focusable.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last?.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first?.focus(); }
+  });
 
   document.querySelector("[data-cart-body]")?.addEventListener("click", (e) => {
     const stepBtn = e.target.closest("[data-step]");
@@ -238,8 +287,7 @@ function initGlobalActions() {
       if (!product) return;
       addToCart(product.id, { color: product.colors[0] || "", size: product.sizes[0] || "", qty: 1 });
       showToast(`${product.title} added to cart`);
-      document.querySelector("[data-cart-drawer]")?.classList.add("is-open");
-      document.querySelector("[data-cart-overlay]")?.classList.add("is-open");
+      document.querySelector("[data-cart-open]")?.click();
     }
 
     if (wishBtn) {
@@ -261,6 +309,7 @@ function initHeroSlider() {
   if (!slides.length) return;
   let index = 0;
   let timer;
+  let paused = false;
 
   if (dotsWrap) {
     dotsWrap.innerHTML = Array.from(slides, (_, i) => `<button aria-label="Go to slide ${i + 1}" data-dot="${i}"></button>`).join("");
@@ -274,8 +323,13 @@ function initHeroSlider() {
   }
   function restart() {
     clearInterval(timer);
-    timer = setInterval(() => show(index + 1), 5500);
+    timer = setInterval(() => { if (!paused) show(index + 1); }, 5500);
   }
+  const slider = document.querySelector(".hero-slider");
+  slider?.addEventListener("mouseenter", () => { paused = true; });
+  slider?.addEventListener("mouseleave", () => { paused = false; });
+  slider?.addEventListener("focusin", () => { paused = true; });
+  slider?.addEventListener("focusout", () => { paused = false; });
 
   document.querySelector("[data-hero-prev]")?.addEventListener("click", () => { show(index - 1); restart(); });
   document.querySelector("[data-hero-next]")?.addEventListener("click", () => { show(index + 1); restart(); });
