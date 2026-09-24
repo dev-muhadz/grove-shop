@@ -106,6 +106,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (emptyNotice) emptyNotice.style.display = "";
   }
 
+  if (!getCartLines().length) return;
   renderOrderReview();
   initPayMethods();
   updatePaymentUI();
