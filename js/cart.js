@@ -60,22 +60,30 @@ function lineKey(productId, color, size) {
 
 /* ---------------- Cart mutations ---------------- */
 export function addToCart(productId, { color = "", size = "", qty = 1 } = {}) {
+  const product = getProductById(productId);
+  if (!product || product.stock <= 0) return { ok: false, message: "This item is sold out." };
   const key = lineKey(productId, color, size);
   const existing = cartState.lines.find((l) => lineKey(l.productId, l.color, l.size) === key);
-  if (existing) {
-    existing.qty += qty;
-  } else {
-    cartState.lines.push({ productId, color, size, qty });
-  }
+  const nextQty = (existing?.qty || 0) + qty;
+  if (nextQty > product.stock) return { ok: false, message: `Only ${product.stock} available.` };
+  if (existing) existing.qty = nextQty;
+  else cartState.lines.push({ productId, color, size, qty });
   persist();
+  return { ok: true };
 }
 
 export function updateQty(productId, color, size, qty) {
   const key = lineKey(productId, color, size);
   const line = cartState.lines.find((l) => lineKey(l.productId, l.color, l.size) === key);
-  if (!line) return;
-  line.qty = Math.max(1, qty);
+  if (!line) return { ok: false };
+  const product = getProductById(productId);
+  if (!product || product.stock <= 0) {
+    removeFromCart(productId, color, size);
+    return { ok: false, message: "This item is sold out." };
+  }
+  line.qty = Math.min(product.stock, Math.max(1, qty));
   persist();
+  return { ok: true, qty: line.qty };
 }
 
 export function removeFromCart(productId, color, size) {
