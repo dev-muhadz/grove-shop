@@ -103,10 +103,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (!getCartLines().length) {
     const emptyNotice = document.querySelector("[data-checkout-empty]");
-    if (emptyNotice) emptyNotice.style.display = "";
+    const checkoutGrid = document.querySelector(".checkout-grid");
+    if (emptyNotice) {
+      emptyNotice.style.display = "";
+      emptyNotice.setAttribute("aria-hidden", "false");
+    }
+    if (checkoutGrid) checkoutGrid.hidden = true;
+    return;
   }
-
-  if (!getCartLines().length) return;
   renderOrderReview();
   initPayMethods();
   updatePaymentUI();
