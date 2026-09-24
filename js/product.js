@@ -140,10 +140,9 @@ function renderPage(product) {
   addBtn.disabled = product.stock === 0;
   addBtn.textContent = product.stock === 0 ? "Sold out" : "Add to cart";
   addBtn.addEventListener("click", () => {
-    addToCart(product.id, { color: selectedColor, size: selectedSize, qty });
-    showToast(`${product.title} added to cart`);
-    document.querySelector("[data-cart-drawer]")?.classList.add("is-open");
-    document.querySelector("[data-cart-overlay]")?.classList.add("is-open");
+    const result = addToCart(product.id, { color: selectedColor, size: selectedSize, qty });
+    showToast(result?.ok === false ? result.message : `${product.title} added to cart`);
+    if (result?.ok !== false) document.querySelector("[data-cart-open]")?.click();
   });
 
   initGallery(product);
