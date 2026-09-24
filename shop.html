@@ -62,13 +62,13 @@
       </div>
 
       <div class="filter-group">
-        <div class="filter-group__title">Category <span class="chev">⌄</span></div>
-        <div class="filter-group__body" data-category-list></div>
+        <button type="button" class="filter-group__title" aria-expanded="true" aria-controls="filter-category-panel">Category <span class="chev">⌄</span></button>
+        <div class="filter-group__body" id="filter-category-panel" data-category-list></div>
       </div>
 
       <div class="filter-group">
-        <div class="filter-group__title">Price <span class="chev">⌄</span></div>
-        <div class="filter-group__body">
+        <button type="button" class="filter-group__title" aria-expanded="true" aria-controls="filter-price-panel">Price <span class="chev">⌄</span></button>
+        <div class="filter-group__body" id="filter-price-panel">
           <div class="range-slider">
             <input type="range" data-price-range step="1">
             <div class="range-slider__values"><span>$0</span><span data-price-max-label></span></div>
@@ -77,8 +77,8 @@
       </div>
 
       <div class="filter-group is-collapsed">
-        <div class="filter-group__title">Availability <span class="chev">⌄</span></div>
-        <div class="filter-group__body">
+        <button type="button" class="filter-group__title" aria-expanded="false" aria-controls="filter-availability-panel">Availability <span class="chev">⌄</span></button>
+        <div class="filter-group__body" id="filter-availability-panel" hidden>
           <label class="checkbox-row"><input type="radio" name="availability" value="in-stock" data-availability> In stock only</label>
           <label class="checkbox-row"><input type="radio" name="availability" value="sold-out" data-availability> Sold out only</label>
         </div>
@@ -166,9 +166,9 @@
 </nav>
 
 <div class="drawer-overlay" data-cart-overlay></div>
-<aside class="drawer" data-cart-drawer aria-label="Shopping cart">
+<aside class="drawer" data-cart-drawer role="dialog" aria-modal="true" aria-labelledby="cart-drawer-title" aria-hidden="true">
   <div class="drawer__header">
-    <h3>Your cart</h3>
+    <h3 id="cart-drawer-title">Your cart</h3>
     <button class="icon-btn" data-cart-close aria-label="Close cart">✕</button>
   </div>
   <div class="drawer__body" data-cart-body></div>
