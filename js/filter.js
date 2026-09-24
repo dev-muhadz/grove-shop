@@ -140,7 +140,24 @@ function initSort() {
 
 function initCollapsibleGroups() {
   document.querySelectorAll(".filter-group__title").forEach((title) => {
-    title.addEventListener("click", () => title.closest(".filter-group").classList.toggle("is-collapsed"));
+    const group = title.closest(".filter-group");
+    const panelId = title.getAttribute("aria-controls");
+    const panel = panelId
+      ? document.getElementById(panelId)
+      : group?.querySelector(".filter-group__body");
+    if (!group || !panel) return;
+
+    const syncState = (isOpen) => {
+      group.classList.toggle("is-collapsed", !isOpen);
+      title.setAttribute("aria-expanded", String(isOpen));
+      panel.hidden = !isOpen;
+    };
+
+    syncState(!group.classList.contains("is-collapsed"));
+
+    title.addEventListener("click", () => {
+      syncState(title.getAttribute("aria-expanded") !== "true");
+    });
   });
 }
 
