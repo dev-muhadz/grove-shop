@@ -329,7 +329,9 @@ function initHeroSlider() {
   slider?.addEventListener("mouseenter", () => { paused = true; });
   slider?.addEventListener("mouseleave", () => { paused = false; });
   slider?.addEventListener("focusin", () => { paused = true; });
-  slider?.addEventListener("focusout", () => { paused = false; });
+  slider?.addEventListener("focusout", (e) => {
+    if (!slider.contains(e.relatedTarget)) paused = false;
+  });
 
   document.querySelector("[data-hero-prev]")?.addEventListener("click", () => { show(index - 1); restart(); });
   document.querySelector("[data-hero-next]")?.addEventListener("click", () => { show(index + 1); restart(); });
