@@ -233,3 +233,10 @@ p { margin: 0 0 var(--space-4); color: var(--color-ink-soft); }
   .footer-grid { grid-template-columns: 1fr 1fr; }
   .footer-bottom { flex-direction: column; gap: var(--space-3); align-items: flex-start; }
 }
+
+
+/* Prevent page scrolling while navigation/cart drawers are open. */
+body.nav-open,
+body.cart-open {
+  overflow: hidden;
+}
