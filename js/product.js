@@ -44,12 +44,22 @@ function initGallery(product) {
 
 function initAccordion() {
   document.querySelectorAll(".accordion-item__trigger").forEach((trigger) => {
-    trigger.addEventListener("click", () => {
-      const item = trigger.closest(".accordion-item");
-      const panel = item.querySelector(".accordion-item__panel");
-      const isOpen = item.classList.toggle("is-open");
-      panel.style.maxHeight = isOpen ? panel.scrollHeight + "px" : "0px";
+    const panelId = trigger.getAttribute("aria-controls");
+    const panel = panelId
+      ? document.getElementById(panelId)
+      : trigger.closest(".accordion-item")?.querySelector(".accordion-item__panel");
+    if (!panel) return;
+
+    const syncState = (isOpen) => {
       trigger.setAttribute("aria-expanded", String(isOpen));
+      panel.hidden = !isOpen;
+      panel.style.maxHeight = isOpen ? panel.scrollHeight + "px" : "0px";
+    };
+
+    syncState(trigger.getAttribute("aria-expanded") === "true");
+
+    trigger.addEventListener("click", () => {
+      syncState(trigger.getAttribute("aria-expanded") !== "true");
     });
   });
 }
