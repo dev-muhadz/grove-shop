@@ -285,9 +285,9 @@ function initGlobalActions() {
       e.preventDefault();
       const product = getProductById(addBtn.dataset.quickAdd);
       if (!product) return;
-      addToCart(product.id, { color: product.colors[0] || "", size: product.sizes[0] || "", qty: 1 });
-      showToast(`${product.title} added to cart`);
-      document.querySelector("[data-cart-open]")?.click();
+      const result = addToCart(product.id, { color: product.colors[0] || "", size: product.sizes[0] || "", qty: 1 });
+      showToast(result?.ok === false ? result.message : `${product.title} added to cart`);
+      if (result?.ok !== false) document.querySelector("[data-cart-open]")?.click();
     }
 
     if (wishBtn) {
