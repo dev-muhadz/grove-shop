@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://dev-muhadz.github.io/grove-shop/sitemap.xml
