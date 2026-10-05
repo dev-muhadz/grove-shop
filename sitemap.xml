@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://dev-muhadz.github.io/grove-shop/</loc>
-  </url>
-  <url>
-    <loc>https://dev-muhadz.github.io/grove-shop/shop.html</loc>
-  </url>
-  <url>
-    <loc>https://dev-muhadz.github.io/grove-shop/product.html</loc>
-  </url>
+  <url><loc>https://dev-muhadz.github.io/grove-shop/</loc></url>
+  <url><loc>https://dev-muhadz.github.io/grove-shop/shop.html</loc></url>
+  <url><loc>https://dev-muhadz.github.io/grove-shop/product.html?id=p-001</loc></url>
+  <url><loc>https://dev-muhadz.github.io/grove-shop/product.html?id=p-002</loc></url>
+  <url><loc>https://dev-muhadz.github.io/grove-shop/product.html?id=p-003</loc></url>
+  <url><loc>https://dev-muhadz.github.io/grove-shop/product.html?id=p-004</loc></url>
+  <url><loc>https://dev-muhadz.github.io/grove-shop/product.html?id=p-005</loc></url>
+  <url><loc>https://dev-muhadz.github.io/grove-shop/product.html?id=p-006</loc></url>
+  <url><loc>https://dev-muhadz.github.io/grove-shop/product.html?id=p-007</loc></url>
+  <url><loc>https://dev-muhadz.github.io/grove-shop/product.html?id=p-008</loc></url>
+  <url><loc>https://dev-muhadz.github.io/grove-shop/product.html?id=p-009</loc></url>
+  <url><loc>https://dev-muhadz.github.io/grove-shop/product.html?id=p-010</loc></url>
+  <url><loc>https://dev-muhadz.github.io/grove-shop/product.html?id=p-011</loc></url>
+  <url><loc>https://dev-muhadz.github.io/grove-shop/product.html?id=p-012</loc></url>
 </urlset>
