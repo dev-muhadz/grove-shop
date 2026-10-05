@@ -70,8 +70,13 @@ function renderPage(product) {
   if (description) description.setAttribute("content", `${product.title} — ${product.description}`);
   const ogTitle = document.querySelector('meta[property="og:title"]');
   const ogDescription = document.querySelector('meta[property="og:description"]');
+  const canonical = document.querySelector('link[rel="canonical"]');
+  const ogUrl = document.querySelector('meta[property="og:url"]');
+  const productUrl = `https://dev-muhadz.github.io/grove-shop/product.html?id=${encodeURIComponent(product.id)}`;
   if (ogTitle) ogTitle.setAttribute("content", `${product.title} — Grove`);
   if (ogDescription) ogDescription.setAttribute("content", product.description);
+  if (canonical) canonical.setAttribute("href", productUrl);
+  if (ogUrl) ogUrl.setAttribute("content", productUrl);
 
   document.querySelector("[data-pdp-cat]").textContent = product.category.replace("-", " ");
   document.querySelector("[data-pdp-title]").textContent = product.title;
