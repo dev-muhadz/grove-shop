@@ -120,7 +120,7 @@ export function productCardHTML(p) {
         <svg viewBox="0 0 24 24" stroke-width="1.6"><path d="M12 21s-7.5-4.9-10-9.3C.3 8 2 4 6 4c2.2 0 3.7 1.3 6 4 2.3-2.7 3.8-4 6-4 4 0 5.7 4 4 7.7-2.5 4.4-10 9.3-10 9.3z"/></svg>
       </button>
       <img class="product-card__img product-card__img--main" src="${main}" alt="${p.title}" loading="lazy" width="600" height="750">
-      ${alt ? `<img class="product-card__img product-card__img--alt" src="${alt}" alt="" loading="lazy" width="600" height="750">` : ""}
+      ${alt ? `<img class="product-card__img product-card__img--alt" src="${alt}" alt="" loading="lazy" width="600" height="750" data-alt-image>` : ""}
       <div class="product-card__quick">
         <button class="btn btn--primary btn--sm btn--full" data-quick-add="${p.id}" ${p.stock === 0 ? "disabled" : ""}>
           ${p.stock === 0 ? "Sold out" : "Quick add"}
@@ -146,6 +146,16 @@ export function renderProductGrid(container, products) {
     return;
   }
   container.innerHTML = products.map(productCardHTML).join("");
+  container.querySelectorAll("[data-alt-image]").forEach((img) => {
+    const card = img.closest(".product-card");
+    const ready = () => card?.classList.add("has-alt-image");
+    const failed = () => card?.classList.remove("has-alt-image");
+    if (img.complete && img.naturalWidth > 0) ready();
+    else {
+      img.addEventListener("load", ready, { once: true });
+      img.addEventListener("error", failed, { once: true });
+    }
+  });
 }
 
 /* ---------------- Cart drawer ---------------- */
