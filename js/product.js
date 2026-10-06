@@ -35,6 +35,7 @@ function initGallery(product) {
     if (!btn) return;
     const i = Number(btn.dataset.thumb);
     mainImg.src = product.images[i];
+    mainImg.alt = `${product.title} — image ${i + 1}`;
     thumbWrap.querySelectorAll("button").forEach((b, n) => {
       b.classList.toggle("is-active", n === i);
       b.setAttribute("aria-pressed", String(n === i));
@@ -62,6 +63,14 @@ function initAccordion() {
       syncState(trigger.getAttribute("aria-expanded") !== "true");
     });
   });
+}
+
+function mainImgSetup(product) {
+  const mainImg = document.querySelector("[data-pdp-main-img]");
+  if (!mainImg) return;
+  mainImg.src = product.images[0] || "";
+  mainImg.alt = product.title;
+  mainImg.decoding = "async";
 }
 
 function renderPage(product) {
@@ -160,6 +169,7 @@ function renderPage(product) {
     if (result?.ok !== false) document.querySelector("[data-cart-open]")?.click();
   });
 
+  mainImgSetup(product);
   initGallery(product);
   initAccordion();
   renderProductGrid(document.querySelector("[data-related-grid]"), getRelatedProducts(product));
