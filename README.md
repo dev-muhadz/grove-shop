@@ -47,7 +47,13 @@ grove/
     └── products/         Self-contained SVG product illustrations (main + hover variants)
 ```
 
-## Product images\n\nThe demo catalog uses locally stored SVG illustrations so the template works without an external image service or image CDN. Each catalog product has a primary SVG and a matching alternate SVG used for the card hover state.\n\nThese SVGs are intentionally lightweight demo artwork, not product photography. Buyers can replace the files in `images/products/` with their own product images while keeping the same filenames, or update the image paths in `js/mockData.js`.\n\n## Customizing the theme
+## Product images
+
+The demo catalog uses locally stored SVG illustrations so the template works without an external image service or image CDN. Each catalog product has a primary SVG and a matching alternate SVG used for the card hover state.
+
+These SVGs are intentionally lightweight demo artwork, not product photography. Buyers can replace the files in `images/products/` with their own product images while keeping the same filenames, or update the image paths in `js/mockData.js`.
+
+## Customizing the theme
 
 All colors, type and spacing live in `css/variables.css` as CSS custom
 properties, scoped under three `[data-theme]` presets:
