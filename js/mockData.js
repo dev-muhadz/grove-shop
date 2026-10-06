@@ -6,10 +6,10 @@
    ========================================================= */
 
 export const CATEGORIES = [
-  { id: "kitchen", name: "Kitchen & Table", image: "https://picsum.photos/seed/grove-kitchen/600/750" },
-  { id: "textiles", name: "Textiles", image: "https://picsum.photos/seed/grove-textiles/600/750" },
-  { id: "lighting", name: "Lighting", image: "https://picsum.photos/seed/grove-lighting/600/750" },
-  { id: "outdoor", name: "Garden & Outdoor", image: "https://picsum.photos/seed/grove-outdoor/600/750" },
+  { id: "kitchen", name: "Kitchen & Table", image: "images/products/p-001.svg" },
+  { id: "textiles", name: "Textiles", image: "images/products/p-002.svg" },
+  { id: "lighting", name: "Lighting", image: "images/products/p-003.svg" },
+  { id: "outdoor", name: "Garden & Outdoor", image: "images/products/p-012.svg" },
 ];
 
 /**
@@ -31,8 +31,25 @@ export const CATEGORIES = [
  * @property {number} stock
  */
 
-const img = (seed, n = 1) =>
-  Array.from({ length: n }, (_, i) => `https://picsum.photos/seed/grove-${seed}-${i}/900/1100`);
+const PRODUCT_IMAGE_BY_SEED = {
+  pourover: "images/products/p-001.svg",
+  linen: "images/products/p-002.svg",
+  lamp: "images/products/p-003.svg",
+  planter: "images/products/p-004.svg",
+  dinner: "images/products/p-005.svg",
+  throw: "images/products/p-006.svg",
+  pendant: "images/products/p-007.svg",
+  chair: "images/products/p-008.svg",
+  napkin: "images/products/p-009.svg",
+  skillet: "images/products/p-010.svg",
+  shade: "images/products/p-011.svg",
+  table: "images/products/p-012.svg",
+};
+
+const img = (seed) => {
+  const image = PRODUCT_IMAGE_BY_SEED[seed];
+  return image ? [image] : [];
+};
 
 /** @type {Product[]} */
 export const PRODUCTS = [
