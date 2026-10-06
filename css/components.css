@@ -139,8 +139,8 @@
 .product-card__media img.product-card__img--alt {
   position: absolute; inset: 0; opacity: 0;
 }
-.product-card:hover .product-card__img--alt { opacity: 1; }
-.product-card:hover .product-card__img--main { opacity: 0; }
+.product-card.has-alt-image:hover .product-card__img--alt { opacity: 1; }
+.product-card.has-alt-image:hover .product-card__img--main { opacity: 0; }
 
 .product-card__badge {
   position: absolute; top: var(--space-3); left: var(--space-3); z-index: 2;
