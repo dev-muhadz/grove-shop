@@ -32,23 +32,23 @@ export const CATEGORIES = [
  */
 
 const PRODUCT_IMAGE_BY_SEED = {
-  pourover: "images/products/p-001.svg",
-  linen: "images/products/p-002.svg",
-  lamp: "images/products/p-003.svg",
-  planter: "images/products/p-004.svg",
-  dinner: "images/products/p-005.svg",
-  throw: "images/products/p-006.svg",
-  pendant: "images/products/p-007.svg",
-  chair: "images/products/p-008.svg",
-  napkin: "images/products/p-009.svg",
-  skillet: "images/products/p-010.svg",
-  shade: "images/products/p-011.svg",
-  table: "images/products/p-012.svg",
+  pourover: ["images/products/p-001.svg", "images/products/p-001-alt.svg"],
+  linen: ["images/products/p-002.svg", "images/products/p-002-alt.svg"],
+  lamp: ["images/products/p-003.svg", "images/products/p-003-alt.svg"],
+  planter: ["images/products/p-004.svg", "images/products/p-004-alt.svg"],
+  dinner: ["images/products/p-005.svg", "images/products/p-005-alt.svg"],
+  throw: ["images/products/p-006.svg", "images/products/p-006-alt.svg"],
+  pendant: ["images/products/p-007.svg", "images/products/p-007-alt.svg"],
+  chair: ["images/products/p-008.svg", "images/products/p-008-alt.svg"],
+  napkin: ["images/products/p-009.svg", "images/products/p-009-alt.svg"],
+  skillet: ["images/products/p-010.svg", "images/products/p-010-alt.svg"],
+  shade: ["images/products/p-011.svg", "images/products/p-011-alt.svg"],
+  table: ["images/products/p-012.svg", "images/products/p-012-alt.svg"],
 };
 
 const img = (seed) => {
   const image = PRODUCT_IMAGE_BY_SEED[seed];
-  return image ? [image] : [];
+  return image || [];
 };
 
 /** @type {Product[]} */
